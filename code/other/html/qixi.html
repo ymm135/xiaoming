@@ -38,62 +38,54 @@
     .header {
       font-size: 38px;
       font-weight: bold;
+      font-family: "Chalkboard";
       text-align: center;
-      line-height: 200px;
+      line-height: 150px;
     }
 
-    .input-item {
-      display: block;
-      width: 100%;
-      margin-bottom: 20px;
-      border: 0;
-      padding: 10px;
-      border-bottom: 1px solid rgb(128, 125, 125);
-      font-size: 15px;
-      outline: none;
-    }
-
-    .input-item:placeholder {
-      text-transform: uppercase;
-    }
-
-    .btn {
+    .btnOk {
       text-align: center;
       padding: 10px;
       width: 100%;
       margin-top: 40px;
-      box-shadow: 0 0.3em #148;
-      /*text-shadow: 1px 1px #148; !* 按钮上的文字也以加上小小的阴影 *!*/
-      /* background-image: linear-gradient(to right, #a6c1ee, #fbc2eb); */
       color: #fff;
       background: #409EFF;
       border: none;
     }
 
-    .msg {
+    .btnNo {
       text-align: center;
-      line-height: 88px;
+      padding: 10px;
+      width: 100%;
+      margin-top: 40px;
+      color: #fff;
+      background: #8B0000;
+      border: none;
     }
 
     a {
       text-decoration-line: none;
       color: #abc1ee;
     }
+
   </style>
 </head>
 <body>
 <div class="container">
   <div class="login-wrapper">
-    <div class="header">Login</div>
+    <div class="header">来自七夕的告白</div>
     <div class="form-wrapper">
-      <input type="text" name="username" placeholder="username" class="input-item">
-      <input type="password" name="password" placeholder="password" class="input-item">
-      <button id="login" class="btn">Login</button>
+      <img src="biu.jpeg" style="display: inline-block;height: 90px"/>
+      <div style="font-size: 28px;">小姐姐❤️，观察你很久了</div>
+      <div style="font-size: 32px;font-weight: bold;margin-top: 10px;font-family: 'Avenir Next'">做我女朋友好不好?</div>
+      <button id="ok" class="btnOk" style="font-size: 20px">🎈🎈🎈好呀🎈🎈🎈</button>
+      <button id="no" class="btnNo" style="font-size: 15px">💔💔💔算了吧💔💔💔</button>
     </div>
   </div>
 </div>
 <script>
-  const button = document.querySelector('button');
+  // const button = document.querySelector('button');
+  const button = document.getElementById('no')
   const distanceBetween = (p1x, p1y, p2x, p2y) => {
     const dx = p1x - p2x;
     const dy = p1y - p2y;
@@ -101,10 +93,6 @@
   }
 
   document.addEventListener('mousemove', (event) => {
-    if (document.querySelector('input[name="password"]').value &&
-      document.querySelector('input[name="username"]').value) {
-      return;
-    }
 
     const radius = Math.max(button.offsetWidth * 0.75, button.offsetHeight * 0.75, 100);
     const bx = button.parentNode.offsetLeft + button.offsetLeft + button.offsetWidth / 2;
