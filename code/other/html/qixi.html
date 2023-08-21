@@ -1,118 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-    html {
-      height: 100%;
-    }
+        html {
+            height: 100%;
+        }
 
-    body {
-      height: 100%;
-    }
+        body {
+            height: 100%;
+        }
 
-    .container {
-      height: 100%;
-      background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
-    }
+        .container {
+            height: 100%;
+            background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
+        }
 
-    .login-wrapper {
-      background-color: #fff;
-      width: 358px;
-      height: 588px;
-      border-radius: 15px;
-      padding: 0 50px;
-      position: relative;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
+        .login-wrapper {
+            background-color: #fff;
+            width: 358px;
+            height: 588px;
+            border-radius: 15px;
+            padding: 0 50px;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-    .header {
-      font-size: 38px;
-      font-weight: bold;
-      font-family: "Chalkboard";
-      text-align: center;
-      line-height: 150px;
-    }
+        .header {
+            font-size: 38px;
+            font-weight: bold;
+            font-family: "Chalkboard";
+            text-align: center;
+            line-height: 150px;
+        }
 
-    .btnOk {
-      text-align: center;
-      padding: 10px;
-      width: 100%;
-      margin-top: 40px;
-      color: #fff;
-      background: #409EFF;
-      border: none;
-    }
+        .btnOk {
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            margin-top: 40px;
+            color: #fff;
+            background: #409EFF;
+            border: none;
+        }
 
-    .btnNo {
-      text-align: center;
-      padding: 10px;
-      width: 100%;
-      margin-top: 40px;
-      color: #fff;
-      background: #8B0000;
-      border: none;
-    }
+        .btnNo {
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            margin-top: 40px;
+            color: #fff;
+            background: #8B0000;
+            border: none;
+        }
 
-    a {
-      text-decoration-line: none;
-      color: #abc1ee;
-    }
+        a {
+            text-decoration-line: none;
+            color: #abc1ee;
+        }
 
-  </style>
+        /*    弹框主题  */
+        /*通用*/
+        .popBox-mask {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            opacity: .6;
+            z-index: 999;
+            background-color: #000;
+        }
+
+        .popBox-content {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+        }
+
+        /*各个弹框下的样式可以自己更改*/
+        #popBox-demo .popBox-content {
+            width: 260px;
+            height: 200px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        #popBox-demo p {
+            line-height: 200px;
+            margin: 0;
+        }
+
+        #popBox-demo .btn-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-  <div class="login-wrapper">
-    <div class="header">来自七夕的告白</div>
-    <div class="form-wrapper">
-      <img src="biu.jpeg" style="display: inline-block;height: 90px"/>
-      <div style="font-size: 28px;">小姐姐❤️，观察你很久了</div>
-      <div style="font-size: 32px;font-weight: bold;margin-top: 10px;font-family: 'Avenir Next'">做我女朋友好不好?</div>
-      <button id="ok" class="btnOk" style="font-size: 20px">🎈🎈🎈好呀🎈🎈🎈</button>
-      <button id="no" class="btnNo" style="font-size: 15px">💔💔💔算了吧💔💔💔</button>
+    <div class="login-wrapper">
+        <div class="header">来自七夕的告白</div>
+        <div class="form-wrapper">
+            <img src="biu.jpeg" style="display: inline-block;height: 90px"/>
+            <div style="font-size: 28px;">小姐姐❤️，观察你很久了</div>
+            <div style="font-size: 32px;font-weight: bold;margin-top: 10px;font-family: 'Avenir Next'">
+                做我女朋友好不好?
+            </div>
+            <button id="ok" onclick="showPopBox()" class="btnOk" style="font-size: 20px">🎈🎈🎈好呀🎈🎈🎈</button>
+            <button id="no" class="btnNo" style="font-size: 15px">💔💔💔算了吧💔💔💔</button>
+        </div>
     </div>
-  </div>
+</div>
+<div class="popBox" id="popBox-demo" style="display:none">
+    <div class="popBox-mask"></div>
+    <div class="popBox-content" style="font-size: 25px">
+        <p>👩‍🦰👩‍🦰👩‍🦰么么哒👩‍🦰👩‍🦰👩‍🦰</p>
+        <a href="javascript:void(0)" class="btn-close" onclick="hidePopBox()">关闭</a>
+    </div>
 </div>
 <script>
-  // const button = document.querySelector('button');
-  const button = document.getElementById('no')
-  const distanceBetween = (p1x, p1y, p2x, p2y) => {
-    const dx = p1x - p2x;
-    const dy = p1y - p2y;
-    return Math.sqrt(dx * dx + dy * dy);
-  }
+    // const button = document.querySelector('button');
+    const button = document.getElementById('no')
+    const distanceBetween = (p1x, p1y, p2x, p2y) => {
+        const dx = p1x - p2x;
+        const dy = p1y - p2y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
 
-  document.addEventListener('mousemove', (event) => {
+    document.addEventListener('mousemove', (event) => {
 
-    const radius = Math.max(button.offsetWidth * 0.75, button.offsetHeight * 0.75, 100);
-    const bx = button.parentNode.offsetLeft + button.offsetLeft + button.offsetWidth / 2;
-    const by = button.parentNode.offsetTop + button.offsetTop + button.offsetHeight / 2;
+        const radius = Math.max(button.offsetWidth * 0.75, button.offsetHeight * 0.75, 100);
+        const bx = button.parentNode.offsetLeft + button.offsetLeft + button.offsetWidth / 2;
+        const by = button.parentNode.offsetTop + button.offsetTop + button.offsetHeight / 2;
 
+        const dist = distanceBetween(event.clientX, event.clientY, bx, by) * 2;
+        const angle = Math.atan2(event.clientY - by, event.clientX - bx);
 
-    const dist = distanceBetween(event.clientX, event.clientY, bx, by) * 2;
-    const angle = Math.atan2(event.clientY - by, event.clientX - bx);
+        const ox = -1 * Math.cos(angle) * Math.max((radius - dist), 0)
+        const oy = -1 * Math.sin(angle) * Math.max((radius - dist), 0)
 
-    const ox = -1 * Math.cos(angle) * Math.max((radius - dist), 0)
-    const oy = -1 * Math.sin(angle) * Math.max((radius - dist), 0)
+        const rx = oy / 2;
+        const ry = -ox / 2;
 
-    const rx = oy / 2;
-    const ry = -ox / 2;
-
-    button.style.transition = `all 0.1s ease`;
-    button.style.transform = `translate(${ox}px, ${oy}px)
+        button.style.transition = `all 0.1s ease`;
+        button.style.transform = `translate(${ox}px, ${oy}px)
                               rotateX(${rx}deg) rotateY(${ry}deg)`;
-    button.style.boxShadow = `0px ${Math.abs(oy)}px ${Math.abs(oy) / radius * 40}px rgba(0,0,0,0.15)`;
-  });
+        button.style.boxShadow = `0px ${Math.abs(oy)}px ${Math.abs(oy) / radius * 40}px rgba(0,0,0,0.15)`;
+    });
+
+    //显示弹框
+    function showPopBox() {
+        document.getElementById('popBox-demo').style.display = 'block';
+    }
+
+    //关闭弹框
+    function hidePopBox() {
+        document.getElementById('popBox-demo').style.display = 'none';
+    }
 </script>
 </body>
 </html>
